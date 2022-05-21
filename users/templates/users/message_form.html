@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+
+    <!-- Main Section -->
+    <main class="formPage my-xl">
+        <div class="content-box">
+            <div class="formWrapper">
+                <a class="backButton" href="{% url 'profile' developer.id %}"><i class="im im-angle-left"></i></a>
+                <br>
+
+
+                <h3>Send Message</h3>
+                <form class="form" action="{% url 'send-message' developer.id %}" method="POST">
+                    {% csrf_token %}
+
+                    {% for field in form %}
+                    <div class="form__field">
+                        {{ field.label_tag }}
+                        {{ field }}
+                    </div>
+                    {% endfor %}
+
+                    <input class="btn btn--sub btn--lg  my-md" type="submit" value="Submit" />
+                </form>
+            </div>
+        </div>
+    </main>
+
+{% endblock %}
